@@ -1,8 +1,7 @@
 <h1>Products#new</h1>
 <p>Find me in app/views/products/new.html.erb</p>
 <h1>product新規作成</h1>
-<P>イメージ実装</P>
-<P>東京,函館,名古屋,大阪</P>
+<%= render "shareds/errors", model: @product %>
 <%= form_with model: @product do |f| %>
 <table>
   <tr>
@@ -21,7 +20,7 @@
   </tr>
  
   <tr>
-      <th><%= f.label :address, "住所" %></th>
+      <th><%= f.label :address, "住所(東京,函館,名古屋,大阪)で入力" %></th>
       <td><%= f.text_field :address %></td>
   </tr>
   <tr>

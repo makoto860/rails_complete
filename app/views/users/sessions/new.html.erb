@@ -1,10 +1,12 @@
-<h2>Log in</h2>
+<h1>ログイン</h1>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <%= render "users/shared/error_messages", resource: resource %>
+
   <div class="field">
-    必須
+    <p>user_nameは必須</p>
     <%= f.label :user_name %><br />
-    <%= f.text_field :user_name, autofocus: true, autocomplete: "user_name" %>
+    <%= f.text_field :user_name, autofocus: true, autocomplete: "user_name", placeholder: "ユーザーネーム" %>
   </div>
 
   <div class="field">
@@ -25,7 +27,7 @@
   <% end %>
 
   <div class="actions">
-    <%= f.submit "Log in" %>
+    <%= f.submit "ログイン" %>
   </div>
 <% end %>
 

@@ -1,0 +1,22 @@
+<h1>reservations/confirmation.html.erb</h1>
+<h1>確認画面</h1>
+
+<%= render 'shareds/errors', model: @reservation %>
+
+<p>開始日、終了日,総合人数は必須です。</p>
+<p>商品:　<%= @product.name %></p>
+<p>開始日: <%= @reservation.start_date.try(:to_formatted_s, :date_jp) %></p>
+<p>終了日: <%= @reservation.end_date.try(:to_formatted_s, :date_jp) %></p>
+<p>総合人数: <%= @reservation.total_people %></p>
+
+<%= form_with url: reservations_path, method: :post, local: true, data: { turbo: false } do |f| %>
+  <%= f.hidden_field :product_id, value: @product.id, name: 'reservation[product_id]' %>
+  <%= f.hidden_field :user_id, value: current_user.id, name: 'reservation[user_id]' %>
+  <%= f.hidden_field :start_date, value: @reservation.start_date, name: 'reservation[start_date]' %>
+  <%= f.hidden_field :end_date, value: @reservation.end_date, name: 'reservation[end_date]' %>
+  <%= f.hidden_field :total_people, value: @reservation.total_people, name: 'reservation[total_people]' %>
+  <%= f.hidden_field :total_day, value: @reservation.total_day, name: 'reservation[total_day]' %>
+  <%= f.hidden_field :total_amount, value: @reservation.total_amount, name: 'reservation[total_amount]' %>
+  <%= f.submit "予約を確定する" %>
+<% end %>
+<%= link_to "product", :products %>

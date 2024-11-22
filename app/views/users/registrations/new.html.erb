@@ -4,7 +4,7 @@
   <%= render "users/shared/error_messages", resource: resource %>
 
   <div class="field">
-    必須
+    <p>ユーザーネーム,email,passwordは必須</p>
     <%= f.label :user_name %><br />
     <%= f.text_field :user_name, autofocus: true %>
   </div>

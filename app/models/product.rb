@@ -1,7 +1,11 @@
 class Product < ApplicationRecord
   belongs_to :user
-  has_many :reservations
+  has_many :reservations, dependent: :destroy
   has_one_attached :image
+
+  def reservations_new(params)
+    reservations.new(params)
+  end
 
   def self.search(search)
     if search != ""

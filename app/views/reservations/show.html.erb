@@ -1,0 +1,46 @@
+<h1>reservations/show.html.erb</h1>
+<h1>予約詳細</h1>
+
+<table class="show-table">
+  <tr>
+    <th>product名</th>
+    <td><%= @reservation.product.name %></td>
+  </tr>
+  <tr>
+    <th>product金額</th>
+    <td><%= @reservation.product.amount %>円</td>
+  </tr>
+  <tr>
+    <th>product画像</th>
+    <% if @reservation.product.image?%>
+      <td><%= image_tag @reservation.product.image, size: '50x50' %></td>
+    <% else %>
+      <td><%= image_tag 'no_image.png', size: '50x50' %></td>
+    <%end%>
+  </tr>
+  <tr>
+    <th>コンテント</th>
+    <td><%= @reservation.product.content %></td>
+  </tr>
+  <tr>
+    <th>開始日</th>
+    <td><%= @reservation.start_date.to_formatted_s(:date_jp) %></td>
+  </tr>
+  <tr>
+    <th>終了日</th>
+    <td><%= @reservation.end_date.to_formatted_s(:date_jp) %></td>
+  </tr>
+  <tr>
+    <th>支払い合計金額</th>
+    <td><%= @reservation.sum_of_amount %>円</td>
+  </tr>
+  <tr>
+    <th>合計人数</th>
+    <td><%= @reservation.total_people %>人</td>
+  </tr>
+  <tr>
+    <th>予約した日にち</th>
+    <td><%= @reservation.created_at.to_formatted_s(:date_jp) %></td>
+  </tr>
+</table>
+<%= link_to "product一覧", :products %>

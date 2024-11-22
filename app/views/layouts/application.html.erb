@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "Tp" %></title>
+    <title><%= content_for(:title) || "TP" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <%= csrf_meta_tags %>
@@ -21,17 +21,8 @@
   <body>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-    <%= link_to "ホーム画面", root_path %>
-
-    <%= form_with url: homes_search_path, local: true, method: :get do |f|%>
-      <%= f.text_field :address, placeholder: "住所を入力" %>
-      <%= f.submit "エリア検索"%>
-    <% end %>
-
-    <%= form_with url: products_path, local: true, method: :get do |f|%>
-　　  <%= f.text_field :keyword, placeholder: "名前、コンテント入力" %>
-      <%= f.submit "キーワード検索"%>
-    <% end %>
+    <br>
+    <%= link_to "HOME", :root %>
     <%= yield %>
   </body>
 </html>

@@ -1,7 +1,6 @@
 <h1>Products#show</h1>
 <p>Find me in app/views/products/show.html.erb</p>
 <h1>product詳細</h1>
-<p>イメージ実装</p>
 <table class="show-table">
   <tr>
     <th>名前</th>
@@ -13,14 +12,36 @@
   </tr>
   <tr>
     <th>金額</th>
-    <td><%= @product.amount %></td>
+    <td><%= @product.amount %>円</td>
   </tr>
    <tr>
      <th>住所</th>
      <td><%= @product.address %></td>
    </tr>
    <tr>
-     <th></th>
+     <th>イメージ: 
+       <% if @product.image.attached? %>
+         <%= image_tag @product.image, size: '50x50' %>
+       <% else %>
+         <%= image_tag asset_path('default.png'), size: '50x50' %>
+       <% end %>
+     </th>
    </tr>
  </table>
- 
+
+<p><%= link_to "product一覧", :products %></p>
+
+<% if user_signed_in? %>
+  <h1>予約フォーム</h1>
+  <h1>必須項目</h1>
+  <%= form_with model: @reservation, url: confirmation_reservations_path, method: :post, local: true, data: { turbo: false } do |f| %>
+  <ul>
+    <%= f.hidden_field :product_id, value: @product.id %>
+    <%= f.hidden_field :user_id, value: current_user.id %>
+    <li>イン<%= f.date_field :start_date %></li>
+    <li>アウト<%= f.date_field :end_date %></li>
+    <li>合計人数<%= f.number_field :total_people, value: 1 %></li>
+    <li><%= f.submit "確認画面へ" %></li>
+  </ul>
+  <% end %>
+<% end %>

@@ -26,7 +26,13 @@
 
    <tr>
      <th>画像</th>
-     <td></td>
+     <td>
+       <% if product.image.attached? %>
+        <%= image_tag product.image, size: '50x50' %>
+       <% else %>
+         <%= image_tag asset_path('default.png'), size: '50x50' %>
+       <% end %>
+     </td>
    </tr>
 
    <tr>
